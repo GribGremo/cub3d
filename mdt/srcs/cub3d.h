@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: grib <grib@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:18:29 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/18 19:54:41 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/19 14:39:39 by grib             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 typedef struct s_data
 {
-    char *north_texture;
-    char *south_texture;
-    char *east_texture;
-    char *west_texture;
-    char *floor_texture;
-    char *ceiling_texture;
+    char *n_tex;
+    char *s_tex;
+    char *e_tex;
+    char *w_tex;
+    char *f_tex;
+    char *c_tex;
     char **map;
 }	t_data;
 
