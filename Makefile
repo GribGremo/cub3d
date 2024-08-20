@@ -6,7 +6,7 @@
 #    By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 15:32:16 by sylabbe           #+#    #+#              #
-#    Updated: 2024/08/18 15:35:38 by sylabbe          ###   ########.fr        #
+#    Updated: 2024/08/20 17:06:09 by sylabbe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC_MDT_DIR = mdt/srcs
 DEST_MDT_DIR = mdt/obj
 
 # ls -1 *.c | sed -z 's/\n/ \\\n\t\t\t/g'
-SRC =	$(addprefix $(SRC_MDT_DIR)/, cub3d.c)
+SRC =	$(addprefix $(SRC_MDT_DIR)/, 	cub3d.c \
+										debug.c \
+										utils.c)
 
 
 OBJECTS = $(SRC:$(SRC_MDT_DIR)/%.c=$(DEST_MDT_DIR)/%.o)
