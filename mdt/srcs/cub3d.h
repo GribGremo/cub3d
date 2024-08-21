@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:18:29 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/20 14:10:02 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/21 11:42:03 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ void parse_mapfile(t_data *data, char **argv);
 void init_data(t_data *data);
 int is_var_line(t_data *data, char *line);
 int is_blank_line(char *line);
+int is_map_line(char *line);
+char *ft_strdup_l(char *str, char limit);
+
+
 
 void    get_textures(t_data *data, char *str);
-void get_texture_path(t_data *data, char *var, char *str, char *cmp);
+void get_texture_path(t_data *data, char **var, char *str, char *cmp);
 
 //debug.c
 void    print_array(char **array);
