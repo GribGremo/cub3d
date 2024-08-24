@@ -67,7 +67,8 @@ SRC = ft_atoi.c \
      ft_atoll.c \
      ft_strendstr.c\
      get_next_line_utils_bonus.c\
-     get_next_line_utils.c
+     get_next_line_utils.c \
+     ft_strstr.c
 
 AR = ar
 
