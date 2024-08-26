@@ -6,7 +6,7 @@
 #    By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 15:32:16 by sylabbe           #+#    #+#              #
-#    Updated: 2024/08/25 12:30:47 by sylabbe          ###   ########.fr        #
+#    Updated: 2024/08/26 15:39:26 by sylabbe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ DEST_MDT_DIR = mdt/obj
 SRC =	$(addprefix $(SRC_MDT_DIR)/, 	cub3d.c \
 										debug.c \
 										utils_parsing.c \
-										parse_file.c)
+										parse_file.c \
+										rgb_to_hexcolor.c)
 
 
 OBJECTS = $(SRC:$(SRC_MDT_DIR)/%.c=$(DEST_MDT_DIR)/%.o)

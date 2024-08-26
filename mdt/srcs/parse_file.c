@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:11:48 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/25 12:28:55 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/26 15:37:13 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	create_map(t_data *data, int i)
 
 void	get_file_value(t_data *data, int i)
 {
+	char *temp;
+
+	temp = NULL;
 	if (ft_strstr(data->file[i], "NO"))
 		parse_line_value(data, &data->n_tex, i, "NO");
 	else if (ft_strstr(data->file[i], "SO"))
@@ -84,9 +87,17 @@ void	get_file_value(t_data *data, int i)
 	else if (ft_strstr(data->file[i], "EA"))
 		parse_line_value(data, &data->e_tex, i, "EA");
 	else if (ft_strstr(data->file[i], "F"))
-		parse_line_value(data, &data->f_tex, i, "F");
+	{
+		parse_line_value(data, &temp, i, "F");
+		data->f_tex = rgb_to_hex(data, temp);
+		free(temp);
+	}
 	else if (ft_strstr(data->file[i], "C"))
-		parse_line_value(data, &data->c_tex, i, "C");
+	{
+		parse_line_value(data, &temp, i, "C");
+		data->c_tex = rgb_to_hex(data, temp);
+		free(temp); 
+	}
 	else if (is_blank_line(data->file[i]))
 		return ;
 	else

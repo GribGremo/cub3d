@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:18:29 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/25 12:06:33 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/26 15:38:56 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ int is_blank_line(char *line);
 int is_map_line(char *line);
 char *ft_strdup_l(char *str, char limit);
 void	parse_file(t_data *data);
+
+//
+char    *rgb_to_hex(t_data *data, char *rgb);
+char *get_col_string(char *rgb, char lmt, int *i);
+char    *get_value_rgb(char *rgb, char lmt, int *i);
+
+
 
 
 

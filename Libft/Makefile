@@ -68,7 +68,8 @@ SRC = ft_atoi.c \
      ft_strendstr.c\
      get_next_line_utils_bonus.c\
      get_next_line_utils.c \
-     ft_strstr.c
+     ft_strstr.c \
+     ft_itoa_hex.c
 
 AR = ar
 
