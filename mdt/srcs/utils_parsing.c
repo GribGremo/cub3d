@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:04:28 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/25 12:23:44 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/28 15:50:28 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	is_blank_line(char *line)
 	{
 		if (line[i] != ' ')
 			return (0);
+		i++;
 	}
 	return (1);
 }

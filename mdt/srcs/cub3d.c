@@ -8,7 +8,9 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	filedup(&data, argv);
 	parse_file(&data);
-	print_textures(&data);
+	print_array(data.map->map);
+	ft_free_all(&data);
+	// print_textures(&data);
 }
 
 void	check_args(int argc, char **argv)
@@ -42,29 +44,14 @@ void	init_data(t_data *data)
 	data->f_tex = NULL;
 	data->c_tex = NULL;
     data->file = NULL;
-	data->map = NULL;
+	data->map = malloc(sizeof(t_map));//
+	if (data->map == NULL)
+		exit_error("Memory allocation issue", - 1);
+	data->map->map_x = 0;
+	data->map->map_y = 0;
+	data->map->map = NULL;
+
 }
-
-
-
-// void get_rgb_value()
-// {
-//     int i;
-//     char *temp;
-
-//     temp = NULL;
-//     i = 0;
-//     while(str[i] != '\0')
-//     {
-//         if (!ft_isalpha(str[i] || str[i] != ','))
-//             exit_error("Invalid RGB declaration in file: Invalid character to declare RGB code");
-//         i++;
-//     }
-//     i = 0;
-//     temp = ft_strdup_l(str, ',')
-//     if (str[i] != ',')
-//         exit_error("Invalid RGB declaration in file: M")
-// }
 
 /*
 -Double declaration d'argument

@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:18:29 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/26 15:38:56 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/28 18:01:14 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <fcntl.h>
 # include "stdio.h"
 
+
+typedef struct s_map
+{
+	int		map_x;
+	int		map_y;
+    int     map_s;
+    char     **map;
+}   t_map;
+
 typedef struct s_data
 {
     char *n_tex;
@@ -26,7 +35,7 @@ typedef struct s_data
     char *w_tex;
     char *f_tex;
     char *c_tex;
-    char **map;
+    t_map *map;
     char **file;
 }	t_data;
 
@@ -47,6 +56,11 @@ char    *rgb_to_hex(t_data *data, char *rgb);
 char *get_col_string(char *rgb, char lmt, int *i);
 char    *get_value_rgb(char *rgb, char lmt, int *i);
 
+
+//
+void	ft_free_all(t_data *data);
+void	ft_free(void **var);
+void	ft_free_array(void ***array);
 
 
 
