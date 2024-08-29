@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: grib <grib@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:11:48 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/28 18:32:23 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/29 03:05:32 by grib             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	filedup(t_data *data, char **argv)
 void	parse_file(t_data *data)
 {
 	int	i;
-	int	is_map;
 
-	is_map = 0;
 	i = 0;
 	while (data->file[i] != NULL && (!is_map_line(data->file[i])
 			|| is_blank_line(data->file[i])))
@@ -53,73 +51,7 @@ void	parse_file(t_data *data)
 	create_map(data, i);
 	// print_array(data->map);
 }
-char *create_map_line(t_data *data, char *line)
-{
-	int i;
-	char *str;
 
-	i = 0;
-	str = NULL;
-	str = malloc(sizeof(char) * data->map->map_x + 1);
-	if (str == NULL)
-		exit_error("Memory allocation issue", - 1);
-	str[0] = '2';
-	while(line[i] != '\0')
-	{
-		if (line[i] == ' ')
-			str[i + 1] = '2';
-		else
-			str[i + 1] = line[i];
-		i++;
-	}
-	while (i + 1 < data->map->map_x)
-	{
-		str[i + 1] = '2';
-		i++;
-	}
-	str[i + 1] = '\0';
-	return (str);
-}
-
-void set_up_map_var(t_data *data, int i)
-{
-	int j;
-
-	j = i;
-	while(data->file[j] != NULL)
-	{
-		if (!is_map_line(data->file[j]))
-			exit_error("Invalid character in map", -1);//Attention '\0' ou pas
-		if (data->map->map_x < ft_strlen(data->file[j]) + 2)
-			data->map->map_x = ft_strlen(data->file[j]) + 2;
-		j++;
-	}
-	data->map->map_y = ft_tablen(&data->file[i]) + 2; //
-	data->map->map = malloc(sizeof(char *) * (data->map->map_y + 1)); //
-	if (data->map->map == NULL) //
-		exit_error("Memory allocation issue", -1);
-	// printf("x:%d\ny :%d\n", data->map->map_x, data->map->map_y);
-}
-
-void	create_map(t_data *data, int i)
-{
-	int	j;
-
-	j = 1;
-	set_up_map_var(data, i);
-	data->map->map[0] = create_map_line(data, "\0");
-	while (data->file[i] != NULL)
-	{
-		// data->map->map[j] = ft_strdup(data->file[i]);
-		data->map->map[j] = create_map_line(data, data->file[i]);
-		if (data->map->map[j] == NULL)
-			exit_error("Memory allocation issue", -1);
-		i++;
-		j++;
-	}
-	data->map->map[data->map->map_y - 1] = create_map_line(data, "\0");
-	data->map->map[data->map->map_y] = NULL;
-}
 
 void	get_file_value(t_data *data, int i)
 {
@@ -180,6 +112,7 @@ void	parse_line_value(t_data *data, char **var, int i, char *cmp)
 	if (data->file[i][j] != '\0')
 		exit_error("Invalid value line: Multiple value on line", i + 1);
 }
+
 void	ft_free_all(t_data *data)
 {
 	ft_free((void **)&data->n_tex);
@@ -189,6 +122,9 @@ void	ft_free_all(t_data *data)
 	ft_free((void **)&data->f_tex);
 	ft_free((void **)&data->c_tex);
 	ft_free_array((void ***)&data->file);
+	ft_free_array((void ***)&data->map->map);
+	ft_free((void **)&data->map);
+	
     // t_map *map;
 }
 
@@ -202,10 +138,13 @@ void	ft_free_array(void ***array)
 	int i;
 
 	i = 0;
-	while((*array)[i] != NULL)
+	if (array && *array != NULL)
 	{
-		ft_free((void **)&(*array)[i]); 
-		i++;
+		while((*array)[i] != NULL)
+		{
+			ft_free((void **)&(*array)[i]); 
+			i++;
+		}
 	}
 	free(*array);
 	*array = NULL;
