@@ -6,12 +6,12 @@
 #    By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 15:32:16 by sylabbe           #+#    #+#              #
-#    Updated: 2024/08/26 15:39:26 by sylabbe          ###   ########.fr        #
+#    Updated: 2024/08/29 12:39:44 by sylabbe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = cub3d
+NAME = cub3D
 
 CFLAGS = -Werror -Wall -Wextra #-fsanitize=address
 
@@ -21,9 +21,13 @@ DEST_MDT_DIR = mdt/obj
 
 # ls -1 *.c | sed -z 's/\n/ \\\n\t\t\t/g'
 SRC =	$(addprefix $(SRC_MDT_DIR)/, 	cub3d.c \
+										create_map.c \
 										debug.c \
+										free_all.c \
+										flood_fill.c \
 										utils_parsing.c \
 										parse_file.c \
+										parse_map.c \
 										rgb_to_hexcolor.c)
 
 

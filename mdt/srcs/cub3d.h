@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:18:29 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/28 18:01:14 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/29 16:29:40 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <fcntl.h>
 # include "stdio.h"
 
+typedef struct s_player
+{
+	int		px;
+	int		py;
+}   t_player;
 
 typedef struct s_map
 {
@@ -33,15 +38,16 @@ typedef struct s_data
     char *s_tex;
     char *e_tex;
     char *w_tex;
-    char *f_tex;
-    char *c_tex;
-    t_map *map;
+    int f_tex;
+    int c_tex;
     char **file;
+    t_player *player;
+    t_map *map;
 }	t_data;
 
 //cub3d.c
-void check_args(int argc, char **argv);
-void exit_error(char *msg, int line);
+void check_args(t_data *data, int argc, char **argv);
+void exit_error(t_data *data, char *msg, int line);
 int is_file_readable(char *filename);
 void	filedup(t_data *data, char **argv);
 void init_data(t_data *data);
@@ -53,8 +59,9 @@ void	parse_file(t_data *data);
 
 //
 char    *rgb_to_hex(t_data *data, char *rgb);
-char *get_col_string(char *rgb, char lmt, int *i);
-char    *get_value_rgb(char *rgb, char lmt, int *i);
+char *get_col_string(t_data *data, char *rgb, char lmt, int *i);
+int get_value_rgb(t_data *data,char *rgb, char lmt, int *i);
+int conv_int(t_data *data, char *rgb);
 
 
 //
@@ -73,6 +80,11 @@ void    parse_line_value(t_data *data, char **var, int i, char *cmp);
 void    print_array(char **array);
 void    print_textures(t_data *data);
 
+//
+void check_close_map(t_data *data, char **map);
+int	fullfill(char **copy, int y, int x);
+char	**copy_tab(t_data *data, char **tab);
+int	check_copy(char **copy);
 
 
 
