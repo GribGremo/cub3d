@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:04:28 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/28 15:50:28 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:38:22 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ int	is_file_readable(char *filename)
 	fd = open(filename, O_RDONLY); // A verifier pour les dossiers
 	if (fd == -1)
 		return (0);
-	else
-	{
-		close(fd);
-		return (1);
-	}
+	close(fd);
+	return (1);
 }
 
 char	*ft_strdup_l(char *str, char limit)

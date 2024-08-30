@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:44:36 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/29 16:57:00 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:37:12 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 
 //     i = 0;
 
+// }
+
+// void 	check_player(t_data)
+// {
+	
 // }
 void	check_close_map(t_data *data, char **map)
 {

@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:11:48 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/29 15:23:28 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/30 16:43:05 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ void	filedup(t_data *data, char **argv)
 			buf[ft_strlen(buf) - 1] = '\0'; //
 		data->file = add_str_to_array(data->file, buf);
 		if (data->file == NULL) // free data->map?
+		{
+			close(fd);
 			exit_error(data, "Memory allocation issue", -1);
+		}
 	}
+	close(fd);
 }
 
 void	parse_file(t_data *data)
@@ -87,7 +91,6 @@ void	parse_line_value(t_data *data, char **var, int i, char *cmp)
 {
 	int	j;
 
-	(void)data; // Comment free en cas d'erreur? lst alloc?
 	j = 0;
 	if (*var != NULL)
 		exit_error(data, "Invalid value line: Value set-up twice", i + 1);
@@ -109,5 +112,8 @@ void	parse_line_value(t_data *data, char **var, int i, char *cmp)
 	while (data->file[i][j] == ' ')
 		j++;
 	if (data->file[i][j] != '\0')
+	{
+		ft_free((void **)var);
 		exit_error(data, "Invalid value line: Multiple value on line", i + 1);
+	}
 }
