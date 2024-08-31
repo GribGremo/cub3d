@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 11:37:38 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/29 12:41:55 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/31 15:06:41 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**copy_tab(t_data *data, char **tab)
 		if (new[i] == NULL)
 		{
 			free_tab(new);
-		    exit_error(data, "Memory allocation issue", -1);
+			exit_error(data, "Memory allocation issue", -1);
 		}
 		i++;
 	}
@@ -58,9 +58,9 @@ char	**copy_tab(t_data *data, char **tab)
 
 int	fullfill(char **copy, int y, int x)
 {
-    if (copy[y][x] == '2')
+	if (copy[y][x] == '2')
 	{
-        return (1);
+		return (1);
 	}
 	if (copy[y][x] != '1' && copy[y][x] != 'X')
 	{

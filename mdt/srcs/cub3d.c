@@ -30,9 +30,9 @@ void	check_args(t_data *data, int argc, char **argv)
 void	exit_error(t_data *data, char *msg, int line)
 {
 	printf("Error\n");
-    if (line > -1)
-        printf("Line %d: ", line);
-    printf("%s",msg);
+	if (line > -1)
+		printf("Line %d: ", line);
+	printf("%s", msg);
 	ft_free_all(data);
 	exit(1);
 }
@@ -45,15 +45,15 @@ void	init_data(t_data *data)
 	data->w_tex = NULL;
 	data->f_tex = -1;
 	data->c_tex = -1;
-    data->file = NULL;
+	data->file = NULL;
 	data->player = malloc(sizeof(t_player));
 	if (data->player == NULL)
 		exit_error(data, "Memory allocation issue", -1);
 	data->player->px = 0;
 	data->player->py = 0;
-	data->map = malloc(sizeof(t_map));//
+	data->map = malloc(sizeof(t_map)); //
 	if (data->map == NULL)
-		exit_error(data, "Memory allocation issue", - 1);
+		exit_error(data, "Memory allocation issue", -1);
 	data->map->map_x = 0;
 	data->map->map_y = 0;
 	data->map->map = NULL;

@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:11:48 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/30 16:43:05 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/31 14:54:20 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	filedup(t_data *data, char **argv)
 		buf = get_next_line(fd);
 		if (buf == NULL)
 			break ;
-		if (buf[0] != '\0')                 //
-			buf[ft_strlen(buf) - 1] = '\0'; //
+		if (buf[0] != '\0')
+			buf[ft_strlen(buf) - 1] = '\0';
 		data->file = add_str_to_array(data->file, buf);
-		if (data->file == NULL) // free data->map?
+		if (data->file == NULL)
 		{
 			close(fd);
 			exit_error(data, "Memory allocation issue", -1);
@@ -44,7 +44,8 @@ void	parse_file(t_data *data)
 	while (data->file[i] != NULL && (!is_map_line(data->file[i])
 			|| is_blank_line(data->file[i])))
 	{
-		get_file_value(data, i);
+		if (!is_blank_line(data->file[i]))
+			get_file_value(data, i);
 		i++;
 	}
 	if (!data->n_tex || !data->s_tex || !data->e_tex || !data->w_tex
@@ -53,12 +54,12 @@ void	parse_file(t_data *data)
 	if (data->file[i] == NULL)
 		exit_error(data, "Missing map in file", -1);
 	create_map(data, i);
-	// print_array(data->map);
+	ft_free_array((void ***)&data->file);
 }
 
 void	get_file_value(t_data *data, int i)
 {
-	char *temp;
+	char	*temp;
 
 	temp = NULL;
 	if (ft_strstr(data->file[i], "NO"))
@@ -79,10 +80,8 @@ void	get_file_value(t_data *data, int i)
 	{
 		parse_line_value(data, &temp, i, "C");
 		data->c_tex = conv_int(data, temp);
-		free(temp); 
+		free(temp);
 	}
-	else if (is_blank_line(data->file[i]))
-		return ;
 	else
 		exit_error(data, "Invalid format in file", i + 1);
 }
@@ -94,23 +93,20 @@ void	parse_line_value(t_data *data, char **var, int i, char *cmp)
 	j = 0;
 	if (*var != NULL)
 		exit_error(data, "Invalid value line: Value set-up twice", i + 1);
-	while (data->file[i][j] == ' ')
-		j++;
+	skip_spaces(data->file[i], &j);
 	if (ft_strncmp(&data->file[i][j], cmp, ft_strlen(cmp)))
-		exit_error(data, "Invalid value line: ID should be first in line", i + 1);
+		exit_error(data, "Invalid value line: ID must be first in line", i + 1);
 	j += ft_strlen(cmp);
 	if (data->file[i][j] != ' ')
-		exit_error(data, "Invalid value line: ID and value must be separated", i + 1);
-	while (data->file[i][j] == ' ')
-		j++;
+		exit_error(data, "Invalid value line: Invalid ID", i + 1);
+	skip_spaces(data->file[i], &j);
 	if (data->file[i][j] == '\0')
 		exit_error(data, "Invalid value line: No value found on line", i + 1);
 	*var = ft_strdup_l(&data->file[i][j], ' ');
 	if (var == NULL)
 		exit_error(data, "Memory allocation issue", -1);
 	j += ft_strlen(*var);
-	while (data->file[i][j] == ' ')
-		j++;
+	skip_spaces(data->file[i], &j);
 	if (data->file[i][j] != '\0')
 	{
 		ft_free((void **)var);

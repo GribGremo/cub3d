@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:04:28 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/30 15:38:22 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/08/31 15:04:39 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	is_blank_line(char *line)
 
 int	is_map_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] != '\0')
@@ -76,4 +76,24 @@ int	is_map_line(char *line)
 		i++;
 	}
 	return (1);
+}
+
+void	skip_spaces(char *str, int *i)
+{
+	while (str[*i] == ' ')
+		(*i)++;
+}
+
+int	ft_tablen_c(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		if (str[i][0] == '\0')
+			return (i);
+		i++;
+	}
+	return (i);
 }
