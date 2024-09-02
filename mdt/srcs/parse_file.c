@@ -6,12 +6,13 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:11:48 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/31 14:54:20 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:25:15 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Duplicate the content of a file in an array of strings*/
 void	filedup(t_data *data, char **argv)
 {
 	char	*buf;
@@ -36,6 +37,8 @@ void	filedup(t_data *data, char **argv)
 	close(fd);
 }
 
+/*Parse the file content array to extract textures, rgb, and map values,
+	if Incorrect format exit 1*/
 void	parse_file(t_data *data)
 {
 	int	i;
@@ -57,6 +60,9 @@ void	parse_file(t_data *data)
 	ft_free_array((void ***)&data->file);
 }
 
+/*Check if the line is containing one of the texture/RGB identifier,
+	and extract it,
+	if not exit 1*/
 void	get_file_value(t_data *data, int i)
 {
 	char	*temp;
@@ -86,6 +92,9 @@ void	get_file_value(t_data *data, int i)
 		exit_error(data, "Invalid format in file", i + 1);
 }
 
+/*Parse the line, test if value already exists, if ID is first in line,
+	if ID is correctly separated, if there is only one value on line,
+	if not exit 1*/
 void	parse_line_value(t_data *data, char **var, int i, char *cmp)
 {
 	int	j;

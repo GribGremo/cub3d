@@ -6,7 +6,7 @@
 #    By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 15:32:16 by sylabbe           #+#    #+#              #
-#    Updated: 2024/08/29 12:39:44 by sylabbe          ###   ########.fr        #
+#    Updated: 2024/09/02 17:08:40 by sylabbe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,14 @@ SRC_MDT_DIR = mdt/srcs
 DEST_MDT_DIR = mdt/obj
 
 # ls -1 *.c | sed -z 's/\n/ \\\n\t\t\t/g'
-SRC =	$(addprefix $(SRC_MDT_DIR)/, 	cub3d.c \
-										create_map.c \
-										debug.c \
-										free_all.c \
-										flood_fill.c \
-										utils_parsing.c \
-										parse_file.c \
-										parse_map.c \
-										rgb_to_hexcolor.c)
+SRC =	$(addprefix $(SRC_MDT_DIR)/,	cub3d.c \
+					create_map.c \
+					debug.c \
+					free_all.c \
+					utils_parsing.c \
+					parse_file.c \
+					parse_map.c \
+					rgb_to_hexcolor.c)
 
 
 OBJECTS = $(SRC:$(SRC_MDT_DIR)/%.c=$(DEST_MDT_DIR)/%.o)

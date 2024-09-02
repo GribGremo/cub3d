@@ -6,7 +6,7 @@
 /*   By: sylabbe <sylabbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 09:37:19 by sylabbe           #+#    #+#             */
-/*   Updated: 2024/08/26 15:43:20 by sylabbe          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:34:37 by sylabbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,8 @@ char			**add_str_to_array_a(t_alloc **lst_alloc,
 int				ft_strcmp(const char *stro, const char *strt);
 long long int	ft_atoll(const char *str, int *error);
 int				ft_strendstr(char *big, char *little);
-char 			*ft_strstr(char *str, char *cmp);//a confirmer
+char			*ft_strstr(char *str, char *cmp);//a confirmer
 char			*ft_itoa_hex(int n);// confirmer
-
 
 //ALLOC		
 int				add_alloc(t_alloc **lst_alloc, void *alloc, void **ptr_alloc);
